@@ -17,6 +17,15 @@
       "category": "Emergency",
       "deadline": "2026-06-30",
       "createdAt": "2023-05-01"
+    },
+    {
+      "id": "3",
+      "name": "Online Course",
+      "targetAmount": 250,
+      "savedAmount": 80,
+      "category": "Education",
+      "deadline": "2025-10-15",
+      "createdAt": "2025-01-20"
     }
   ]
 }
