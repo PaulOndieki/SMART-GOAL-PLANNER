@@ -1,38 +1,41 @@
 import React from "react";
+import "./App.css";
 
 function Overview({ goals }) {
   const totalGoals = goals.length;
   const completedGoals = goals.filter(
-    (goal) => goal.savedAmount >= goal.targetAmount
+    (goal) => goal.currentAmount >= goal.targetAmount
   ).length;
 
+  const completionRate =
+    totalGoals > 0
+      ? Math.round((completedGoals / totalGoals) * 100)
+      : 0;
+
   const totalSaved = goals.reduce(
-    (sum, goal) => sum + goal.savedAmount,
+    (sum, goal) => sum + Number(goal.currentAmount),
     0
   );
 
-  const completionRate = totalGoals
-    ? Math.round((completedGoals / totalGoals) * 100)
-    : 0;
-
   return (
-    <div className="overview-dashboard">
-      <h2>Overview</h2>
-      <div className="overview-grid">
-        <div className="overview-item">
-          <h4>Total Goals</h4>
-          <p>{totalGoals}</p>
-        </div>
+    <div className="overview">
+      <h2>Goal Overview</h2>
 
-        <div className="overview-item">
-          <h4>Goals Completed</h4>
-          <p>{completedGoals} of {totalGoals} ({completionRate}%)</p>
-        </div>
+      <div className="stat-block">
+        <div className="stat-label">Total Goals</div>
+        <div className="stat-value">{totalGoals}</div>
+      </div>
 
-        <div className="overview-item">
-          <h4>Total Saved</h4>
-          <p>${totalSaved.toLocaleString()}</p>
+      <div className="stat-block">
+        <div className="stat-label">Completed</div>
+        <div className="stat-value">
+          {completedGoals} of {totalGoals} ({completionRate}%)
         </div>
+      </div>
+
+      <div className="stat-block">
+        <div className="stat-label">Total Saved</div>
+        <div className="stat-value">${totalSaved.toLocaleString()}</div>
       </div>
     </div>
   );
