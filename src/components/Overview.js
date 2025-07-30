@@ -1,44 +1,43 @@
-import React from "react";
-import "./App.css";
+import React, { useContext } from "react";
+import { AppContext } from "../context/AppContext";
+import { Card, Col, Row } from "react-bootstrap";
 
-function Overview({ goals }) {
-  const totalGoals = goals.length;
-  const completedGoals = goals.filter(
-    (goal) => goal.currentAmount >= goal.targetAmount
-  ).length;
-
-  const completionRate =
-    totalGoals > 0
-      ? Math.round((completedGoals / totalGoals) * 100)
-      : 0;
+const Overview = () => {
+  const { goals } = useContext(AppContext);
 
   const totalSaved = goals.reduce(
-    (sum, goal) => sum + Number(goal.currentAmount),
+    (sum, goal) => sum + (parseFloat(goal.currentAmount) || 0),
     0
   );
 
-  return (
-    <div className="overview">
-      <h2>Goal Overview</h2>
-
-      <div className="stat-block">
-        <div className="stat-label">Total Goals</div>
-        <div className="stat-value">{totalGoals}</div>
-      </div>
-
-      <div className="stat-block">
-        <div className="stat-label">Completed</div>
-        <div className="stat-value">
-          {completedGoals} of {totalGoals} ({completionRate}%)
-        </div>
-      </div>
-
-      <div className="stat-block">
-        <div className="stat-label">Total Saved</div>
-        <div className="stat-value">${totalSaved.toLocaleString()}</div>
-      </div>
-    </div>
+  const totalTarget = goals.reduce(
+    (sum, goal) => sum + (parseFloat(goal.targetAmount) || 0),
+    0
   );
-}
+
+  const progressPercent =
+    totalTarget > 0 ? ((totalSaved / totalTarget) * 100).toFixed(1) : 0;
+
+  return (
+    <Card className="mb-3">
+      <Card.Body>
+        <Row>
+          <Col>
+            <h5>Total Saved</h5>
+            <p>KES {totalSaved.toLocaleString()}</p>
+          </Col>
+          <Col>
+            <h5>Total Target</h5>
+            <p>KES {totalTarget.toLocaleString()}</p>
+          </Col>
+          <Col>
+            <h5>Progress</h5>
+            <p>{progressPercent}%</p>
+          </Col>
+        </Row>
+      </Card.Body>
+    </Card>
+  );
+};
 
 export default Overview;
