@@ -1,39 +1,56 @@
+// src/components/GoalCard.js
 import React from "react";
-import { FaTrash, FaEdit } from "react-icons/fa";
-import "./GoalCard.css";
 
-const GoalCard = ({ goal, onDelete, onEdit }) => {
-  const percentage = (goal.savedAmount / goal.targetAmount) * 100;
-  const now = new Date();
-  const deadline = new Date(goal.deadline);
-  const daysLeft = Math.ceil((deadline - now) / (1000 * 60 * 60 * 24));
+function GoalCard({ goal, onDelete, onEdit }) {
+  const {
+    name,
+    targetAmount,
+    savedAmount,
+    category,
+    deadline,
+    createdAt,
+    id,
+  } = goal;
 
-  let status = "";
-  if (percentage >= 100) status = "Completed";
-  else if (daysLeft <= 0) status = "Overdue";
-  else if (daysLeft <= 30) status = "⚠️ Near Deadline";
+  const progressPercent = Math.min(
+    Math.round((savedAmount / targetAmount) * 100),
+    100
+  );
+
+  const handleDelete = () => {
+    if (window.confirm(`Delete goal "${name}"?`)) {
+      onDelete(id);
+    }
+  };
 
   return (
-    <div className="goal-card">
-      <h3>{goal.name}</h3>
-      <p><strong>Category:</strong> {goal.category}</p>
-      <p><strong>Target:</strong> ${goal.targetAmount.toLocaleString()}</p>
-      <p><strong>Saved:</strong> ${goal.savedAmount.toLocaleString()}</p>
+    <div className="card goal-card">
+      <h3>{name}</h3>
+      <p><strong>Category:</strong> {category}</p>
+      <p><strong>Target:</strong> ${targetAmount.toLocaleString()}</p>
+      <p><strong>Saved:</strong> ${savedAmount.toLocaleString()}</p>
+      <p><strong>Deadline:</strong> {deadline}</p>
+      <p><strong>Created:</strong> {new Date(createdAt).toLocaleDateString()}</p>
+
       <div className="progress-bar">
         <div
-          className="progress"
-          style={{ width: `${Math.min(percentage, 100)}%` }}
+          className="progress-fill"
+          style={{
+            width: `${progressPercent}%`,
+            backgroundColor: progressPercent >= 100 ? "#4CAF50" : "#2196F3",
+          }}
         ></div>
       </div>
-      <p><strong>Status:</strong> {status}</p>
-      <p><strong>Deadline:</strong> {goal.deadline} ({daysLeft} days left)</p>
-      <div className="actions">
-        <button onClick={() => onEdit(goal)}><FaEdit /></button>
-        <button onClick={() => onDelete(goal.id)}><FaTrash /></button>
+      <p>{progressPercent}% Complete</p>
+
+      <div className="card-actions">
+        <button onClick={() => onEdit(goal)}>Edit</button>
+        <button onClick={handleDelete} className="delete-btn">
+          Delete
+        </button>
       </div>
     </div>
   );
-};
+}
 
 export default GoalCard;
-
