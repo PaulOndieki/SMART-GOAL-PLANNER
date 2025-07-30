@@ -1,137 +1,107 @@
-
-body {
+/* Base Reset & Fullscreen Setup */
+* {
+  box-sizing: border-box;
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  padding: 0;
 }
 
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #1e1e1e;
+  color: #e0e0e0;
+  overflow: hidden;
+}
+
+/* Scrollable Inner App */
 .App {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  padding: 24px;
 }
 
-h1 {
-  margin-bottom: 2rem;
-  color: #333;
+/* Header */
+.App h1 {
+  text-align: center;
+  color: #00c6ff;
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+/* Content Section Layout */
+section {
+  margin-bottom: 24px;
+  padding: 20px;
+  background-color: #2a2a2a;
+  border-radius: 12px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
 }
 
 /* Forms */
-.form {
-  background-color: #fff;
-  padding: 1.5rem;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
-  margin-bottom: 2rem;
-  text-align: left;
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.form input,
-.form select {
-  width: 100%;
-  padding: 0.7rem;
-  margin: 0.5rem 0 1rem;
-  border-radius: 5px;
-  border: 1px solid #ccc;
+input, select, textarea {
+  padding: 10px;
   font-size: 1rem;
-}
-
-.form button {
-  background-color: #2196F3;
-  color: #fff;
-  padding: 0.7rem 1.2rem;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
+  background-color: #444;
+  color: #fff;
+}
+
+input::placeholder {
+  color: #aaa;
+}
+
+/* Buttons */
+button {
+  padding: 10px 16px;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #00c6ff, #0072ff);
+  color: white;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.form button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-.form button:hover:not(:disabled) {
-  background-color: #1976D2;
-}
-
-/* Goal List */
-.goal-list {
-  margin-top: 2rem;
+button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 10px rgba(0, 198, 255, 0.6);
 }
 
 /* Goal Card */
 .goal-card {
-  background-color: #fff;
-  padding: 1.5rem;
+  background-color: #2f2f2f;
+  padding: 16px;
   border-radius: 10px;
-  margin-bottom: 1.5rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
-  text-align: left;
+  margin-bottom: 16px;
+  border-left: 4px solid #00c6ff;
 }
 
-.goal-card h3 {
-  margin-top: 0;
+.goal-title {
+  font-size: 1.4rem;
+  color: #ffffff;
 }
 
-.card-actions {
-  margin-top: 1rem;
+.goal-amounts {
+  font-size: 1rem;
+  color: #cfcfcf;
 }
 
-.card-actions button {
-  margin-right: 1rem;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  border: none;
-  font-size: 0.9rem;
-  cursor: pointer;
+/* Overview */
+.overview {
+  text-align: center;
 }
 
-.card-actions .delete-btn {
-  background-color: #f44336;
-  color: #fff;
-}
-
-.card-actions .delete-btn:hover {
-  background-color: #d32f2f;
-}
-
-.progress-bar {
-  width: 100%;
-  height: 10px;
-  background-color: #eee;
-  border-radius: 5px;
-  overflow: hidden;
-  margin-top: 0.5rem;
-}
-
-.progress-fill {
-  height: 100%;
-  transition: width 0.5s ease-in-out;
-}
-
-/* Overview Dashboard */
-.overview-dashboard {
-  margin-bottom: 2rem;
-}
-
-.overview-grid {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.overview-item {
-  background-color: #fff;
-  padding: 1rem;
-  flex: 1;
-  border-radius: 8px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-}
-
-/* Empty State Message */
-.empty-message {
-  font-style: italic;
-  color: #777;
-  margin-top: 2rem;
+.overview h2 {
+  color: #00c6ff;
 }
