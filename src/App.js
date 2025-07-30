@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Overview from "./components/Overview";
@@ -72,16 +71,13 @@ function App() {
 
   return (
     <div className="App">
-      <h1>SMART Goal Planner</h1>
-      <Overview goals={goals} />
-      <GoalForm onAdd={addGoal} />
-      <DepositForm goals={goals} onUpdate={updateGoal} />
-      <GoalList
-        goals={goals}
-        onDelete={deleteGoal}
-        onUpdate={updateGoal}
-      />
-    </div>
+  <h1>SMART Goal Planner</h1>
+  <section className="overview"><Overview goals={goals} /></section>
+  <section><GoalForm onAdd={addGoal} /></section>
+  <section><DepositForm goals={goals} onUpdate={updateGoal} /></section>
+  <section><GoalList goals={goals} onDelete={deleteGoal} onUpdate={updateGoal} /></section>
+</div>
+
   );
 }
 
