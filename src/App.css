@@ -6,41 +6,77 @@ body {
 }
 
 .App {
-  padding: 2rem;
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
+  margin-bottom: 2rem;
   color: #333;
 }
 
-.card {
-  background: #fff;
-  border-radius: 8px;
-  padding: 1rem;
-  margin-bottom: 1rem;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+/* Forms */
+.form {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  margin-bottom: 2rem;
+  text-align: left;
 }
 
-button {
-  margin-right: 0.5rem;
-  padding: 0.5rem 1rem;
+.form input,
+.form select {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.5rem 0 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form button {
+  background-color: #2196F3;
+  color: #fff;
+  padding: 0.7rem 1.2rem;
   border: none;
   border-radius: 5px;
-  background-color: #007bff;
-  color: white;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #0056b3;
+.form button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
 }
 
-input, select {
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
-  width: 100%;
-  box-sizing: border-box;
+.form button:hover:not(:disabled) {
+  background-color: #1976D2;
 }
+
+/* Goal List */
+.goal-list {
+  margin-top: 2rem;
+}
+
+/* Goal Card */
+.goal-card {
+  background-color: #fff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.07);
+  text-align: left;
+}
+
+.goal-card h3 {
+  margin-top: 0;
+}
+
+.card-actions {
+  margin-top: 1rem;
+}
+
+.card-actions button {
+  margin
